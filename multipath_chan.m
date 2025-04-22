@@ -30,7 +30,7 @@ hi = path_gain;
 
 for m=1:M
     for n=1:N
-        for x=1:L 
+        for x=1:L
             % Define terms of model
             expRician = (-2 * 1i * (pi)) * ((m + M / 2) .* delta_f .*...
                 Ti(rician_index) - Vi(rician_index) .* (n) .* Ts);

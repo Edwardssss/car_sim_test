@@ -5,5 +5,5 @@ parallel_rx = reshape(mod_signal, numel(mod_signal)/ofdm_subframe_num, ofdm_subf
 % 移除循环前缀
 parallel_rx(1:(cp_len),:) = [];
 % FFT处理
-demod_signal =  fft(parallel_rx,[],2); 
+demod_signal =  fft(parallel_rx,[],2);
 end

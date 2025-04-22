@@ -31,7 +31,7 @@ for i = 1:size(tx_signal_matrix,1)
                 sample(i / pilot_spacing + 1,j) = faded_signal_matrix(i,j) ./ tx_signal_matrix(i,j);
             end
         end
-    end    
+    end
 end
 
 % 对导频之间的子载波进行频域线性插值
