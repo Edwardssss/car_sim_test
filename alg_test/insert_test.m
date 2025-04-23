@@ -134,10 +134,11 @@ figure;
 plot(min_space:1:max_space,linear_mse);
 hold on
 plot(min_space:1:max_space,nearest_mse);
-plot(min_space:1:max_space,next_mse);
-plot(min_space:1:max_space,previous_mse);
-plot(min_space:1:max_space,pchip_mse);
-plot(min_space:1:max_space,cubic_mse);
+% plot(min_space:1:max_space,next_mse);
+% plot(min_space:1:max_space,previous_mse);
+% plot(min_space:1:max_space,pchip_mse);
+% plot(min_space:1:max_space,cubic_mse);
 plot(min_space:1:max_space,makima_mse);
-plot(min_space:1:max_space,spline_mse);
-legend("linear","nearest","next","previous","pchip","cubic","makima","spline");
+% plot(min_space:1:max_space,spline_mse);
+% legend("linear","nearest","next","previous","pchip","cubic","makima","spline");
+legend("linear","nearest","makima"),xlabel("采样点间隔"),ylabel("均方误差");

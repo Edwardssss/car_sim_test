@@ -8,7 +8,7 @@ function  [encode_raw_data,uncode_raw_data,bin_data,packet_size,...
 % bin_data        原始二进制数据
 % packet_size     数据包大小
 % packet_num      所需数据包的个数
-% code_block_num  
+% code_block_num
 
 % k_bit                      每符号比特数
 % data_len                   数据位长度
@@ -35,7 +35,7 @@ elseif subframe_size(1) > encode_length            % 子帧大小 > 码块长度
     
 elseif subframe_size(1) < encode_length            % 子帧大小 < 码块长度
     [packet_size, code_block_num] = rat(encode_length ./ subframe_size(1),1e-1);
-end   
+end
 
 % 确保数据容量足够
 while code_block_num * encode_length >= subframe_size(1) * packet_size
@@ -45,7 +45,7 @@ while code_block_num * encode_length >= subframe_size(1) * packet_size
         packet_size = packet_size ./ 2;
         code_block_num = code_block_num ./ 2;
     end
-end 
+end
 
 % 计算填充比特与包数量
 pad_bits = zeros((subframe_size(1) * packet_size - code_block_num * ...
