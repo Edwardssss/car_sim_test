@@ -37,7 +37,7 @@ end
 % 对导频之间的子载波进行频域线性插值
 interp_points = ((1 + (1 / pilot_spacing)):(1 / pilot_spacing):size(sample,1));
 for j = 1:size(tx_signal_matrix,2)
-    h(:,j) = interp1(sample(:,j),interp_points,"makima",1);
+    h(:,j) = interp1(sample(:,j),interp_points,"linear",1);
 end
 
 % 取符号的导频响应
@@ -63,14 +63,14 @@ h4856 = zeros(size(tx_signal_matrix,1),pilot_spacing);
 h5664 = zeros(size(tx_signal_matrix,1),pilot_spacing);
 
 for i = 1:size(tx_signal_matrix,1)
-    h18(i,:) = interp1(h1(i,:),interpPoints1,"makima",1);
-    h816(i,:) = interp1(h1(i,:),interpPoints2,"makima",1);
-    h1624(i,:) = interp1(h1(i,:),interpPoints3,"makima",1);
-    h2432(i,:) = interp1(h1(i,:),interpPoints4,"makima",1);
-    h3240(i,:) = interp1(h1(i,:),interpPoints5,"makima",1);
-    h4048(i,:) = interp1(h1(i,:),interpPoints6,"makima",1);
-    h4856(i,:) = interp1(h1(i,:),interpPoints7,"makima",1);
-    h5664(i,:) = interp1(h1(i,:),interpPoints8,"makima",1);
+    h18(i,:) = interp1(h1(i,:),interpPoints1,"linear",1);
+    h816(i,:) = interp1(h1(i,:),interpPoints2,"linear",1);
+    h1624(i,:) = interp1(h1(i,:),interpPoints3,"linear",1);
+    h2432(i,:) = interp1(h1(i,:),interpPoints4,"linear",1);
+    h3240(i,:) = interp1(h1(i,:),interpPoints5,"linear",1);
+    h4048(i,:) = interp1(h1(i,:),interpPoints6,"linear",1);
+    h4856(i,:) = interp1(h1(i,:),interpPoints7,"linear",1);
+    h5664(i,:) = interp1(h1(i,:),interpPoints8,"linear",1);
 end
 
 % 合并插值结果

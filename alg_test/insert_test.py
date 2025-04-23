@@ -10,6 +10,8 @@ import numpy as np
 from scipy.signal import resample
 import matplotlib.pyplot as plt
 import tkinter
+
+
 def generate_multipath_channel(num_paths=3, max_delay=1e-6, snr_db=30):
     """
     生成多径信道冲激响应
@@ -48,9 +50,12 @@ def generate_multipath_channel(num_paths=3, max_delay=1e-6, snr_db=30):
 if __name__ == "__main__":
     print("Hello 你好")
     print(tkinter.TkVersion)
-    t, h = generate_multipath_channel(num_paths=5, max_delay=1e-6)
+    t, h = generate_multipath_channel(num_paths=5, max_delay=1e-6, snr_db=30)
     plt.stem(t, np.abs(h))
     plt.xlabel("Time (s)")
     plt.ylabel("Amplitude")
     plt.title("Multipath Channel Impulse Response")
     plt.show()
+    NFFT = 1024
+    fs = 12.8 * 2 * pow(10, 6)
+    print(fs)
