@@ -1,5 +1,5 @@
-function [equalise_signal,h_est] = chan_equaliser(rx_signal,faded_signal,...
-    tx_signal,ofdm_subframe_num,pilot_spacing)
+function [equalise_signal,h_est] = chan_equalizer(rx_signal,faded_signal,...
+    ofdm_subframe_num,pilot_spacing)
 %CHAN_EQUALISER 信道均衡
 
 frame_sample_num = numel(rx_signal)/ofdm_subframe_num;       % 每符号采样点数
@@ -7,7 +7,7 @@ subcarrier_num = pow2(floor(log2(frame_sample_num)));   % 实际用于传输数�
 
 % 重组为矩阵(行=采样点，列=符号)
 faded_signal_matrix = reshape(faded_signal, [frame_sample_num,ofdm_subframe_num]);
-tx_signal_matrix = reshape(tx_signal, [frame_sample_num,ofdm_subframe_num]);
+tx_signal_matrix = reshape(faded_signal, [frame_sample_num,ofdm_subframe_num]);
 
 % 去除循环前缀(保留有效数据部分)
 faded_signal_matrix(1:(frame_sample_num - subcarrier_num),:) = [];

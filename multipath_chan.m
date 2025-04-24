@@ -1,7 +1,7 @@
 function [chan_impulse,raw_impulse] = multipath_chan(fc,cp_size,delta_f,raw_signal,max_v,real_delay,path_gain)
 %MULTIPATH_CHAN 多径信道生成
 
-% Create N x M channel matrix 
+% Create N x M channel matrix
 [N, M]= size(raw_signal');                                     % Size of inSig is used to create channel model
 n = zeros(1,N);                                          % delay_Doppler rows (doppler)
 m = zeros(1,M);                                          % delay_Doppler cols (delay)
@@ -40,7 +40,6 @@ for m=1:M
             % 生成信道冲激响应
             H(n, m) = H(n, m) + sqrt(K_ratio / (K_ratio + 1)) * exp(expRician) +...
                 sqrt(1 / (K_ratio + 1)) * exp(expTerm_other) * hiPrime;
-            
         end
     end
 end
