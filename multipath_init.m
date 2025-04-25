@@ -18,8 +18,8 @@ tx_signal_size = zeros((PAR_STRUCT.N + PAR_STRUCT.cp_len),PAR_STRUCT.ofdm_subfra
 rng shuffle; % randomization seed
 L = length(PATH_STRUCT.real_delay); % path number
 
-[rician_loss,rician_index] = max(PAR_STRUCT.total_fad_list);
-other_loss = (sum(PAR_STRUCT.total_fad_list) - rician_loss) / (L - 1);
+[rician_loss,rician_index] = max(PATH_STRUCT.total_fad_list);
+other_loss = (sum(PATH_STRUCT.total_fad_list) - rician_loss) / (L - 1);
 K_ratio = 10 .^ ((rician_loss - other_loss) / 10);
 Vi = zeros(1,L);
 
@@ -35,13 +35,13 @@ end
 %     Vi(l) = fd(l);
 % end
 
-T = 1 / PAR_STRUCT.delta_f;
-Ts = (1 + PAR_STRUCT.cp_size) / PAR_STRUCT.delta_f;     % OFDM符号时间
+T = 1 / PAR_STRUCT.df;
+Ts = (1 + PAR_STRUCT.cp_size) / PAR_STRUCT.df;     % OFDM符号时间
 Ti = PATH_STRUCT.real_delay;
 hi = PATH_STRUCT.total_fad_list;
 
-[H,m,n] = impulse_cal(M,N,L,Ts,Ti,T,hi,K_ratio,PAR_STRUCT.delta_f,Vi,rician_index);
+H = impulse_cal(M,N,L,Ts,Ti,T,hi,K_ratio,PAR_STRUCT.df,Vi,rician_index);
 
 MULTIPATH_STRUCT.raw_impulse = H;
-MULTIPATH_STRUCT.chan_impulse = reshape(H',[n * m,1]);
+MULTIPATH_STRUCT.chan_impulse = reshape(H',[N * M,1]);
 end

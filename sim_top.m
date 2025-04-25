@@ -16,14 +16,14 @@ clc,clear,clf;
 %% Parameter Initialization
 PAR_STRUCT = par_init();
 %% Path Parameter Return
-PATH_STRUCT = scenario_read(sim_scenario,PAR_STRUCT.fc);
+PATH_STRUCT = scenario_read(sim_scenario,PAR_STRUCT);
 %% Raw Signal And Data Generation
 LDPC_CONFIG = ldpc_init(PAR_STRUCT.code_rate);
 ERROR_STRUCT = err_init(length(PAR_STRUCT.EbN0_dB));
 RAW_DATA_STRUCT = raw_data_gen(PAR_STRUCT,LDPC_CONFIG);
 MULTIPATH_STRUCT = multipath_init(PAR_STRUCT,PATH_STRUCT);
-qam_tx_signal = qam_mod(RAW_DATA_STRUCT,PAR_STRUCT);
-[ofdm_tx,tx_frame_buffer] = ofdm_sig_mod(qam_tx_signal,PAR_STRUCT.ofdm_subframe_num,RAW_DATA_STRUCT.packet_size);
+[guard_tx,qam_tx_signal] = qam_mod(RAW_DATA_STRUCT,PAR_STRUCT);
+[ofdm_tx,tx_frame_buffer] = ofdm_sig_mod(qam_tx_signal,PAR_STRUCT.N,PAR_STRUCT.cp_len,PAR_STRUCT.ofdm_subframe_num,RAW_DATA_STRUCT.packet_size);
 %% OFDM Simulation
 ofdm_waitbar = waitbar(0,"OFDM simulation in operation...");
 for bit_energy_to_noise_energy = 1:length(PAR_STRUCT.EbN0_dB)
@@ -35,4 +35,10 @@ for bit_energy_to_noise_energy = 1:length(PAR_STRUCT.EbN0_dB)
 end
 close(ofdm_waitbar);
 %% OTFS Simulation
-
+otfs_sig_mod(RAW_DATA_STRUCT,PAR_STRUCT,guard_tx);
+for bit_energy_to_noise_energy = 1:length(PAR_STRUCT.EbN0_dB)
+    for p = 1:RAW_DATA_STRUCT.packet_num
+        otfs_sim(RAW_DATA_STRUCT,PAR_STRUCT,bit_energy_to_noise_energy,"Eb/N0",ofdm_tx);
+    end
+    
+end

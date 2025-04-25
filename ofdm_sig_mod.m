@@ -8,7 +8,7 @@
 %
 % Copyright (c) 2025, Edwardssss
 
-function [ofdm_tx,tx_frame_buffer] = ofdm_sig_mod(qam_tx_signal,ofdm_subframe_num,packet_size)
+function [ofdm_tx,tx_frame_buffer] = ofdm_sig_mod(qam_tx_signal,N,cp_len,ofdm_subframe_num,packet_size)
     frame_buffer = qam_tx_signal; % send buffer
     tx_frame_buffer = [];
     for w = 1:packet_size

@@ -13,5 +13,5 @@ function LDPC_config = ldpc_init(code_rate)
     % 编译码对象
     LDPC_config.encode_config = ldpcEncoderConfig(parity_matrix);
     LDPC_config.decode_config = ldpcDecoderConfig(parity_matrix);
-    LDPC_config.no_coded_bits = size(parity_check_matrix,2);
+    LDPC_config.no_coded_bits = size(parity_matrix,2);
 end

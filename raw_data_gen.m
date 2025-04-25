@@ -53,6 +53,6 @@ for q = 1:raw_data_struct.code_block_num
     code_temp = ldpcEncode(data_bits,LDPC_CONFIG.encode_config);
     raw_data_struct.bin_data = [raw_data_struct.bin_data;code_temp]; % perform LDPC encoding
 end
-padded_data_in = [raw_data_dstruct.bin_data; pad_bits]; % adding padding bits
+padded_data_in = [raw_data_struct.bin_data; pad_bits]; % adding padding bits
 raw_data_struct.encode_raw_data = randintrlv(padded_data_in,PAR_STRUCT.intr_seed);
 end

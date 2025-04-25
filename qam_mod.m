@@ -8,7 +8,7 @@
 %
 % Copyright (c) 2025, Edwardssss
 
-function qam_tx_signal = qam_mod(RAW_DATA_STRUCT,PAR_STRUCT)
+function [qam_tx_signal,guard_tx] = qam_mod(RAW_DATA_STRUCT,PAR_STRUCT)
 % M-QAM
 qam_tx = qammod(RAW_DATA_STRUCT.encode_raw_data,PAR_STRUCT.mod_level,"InputType","bit","UnitAveragePower",true);
 parallel_tx = reshape(qam_tx,[PAR_STRUCT.data_len,PAR_STRUCT.ofdm_subframe_num * RAW_DATA_STRUCT.packet_size]); % 转换为并行数据

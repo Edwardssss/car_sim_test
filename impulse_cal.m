@@ -7,7 +7,7 @@
 % @Desc    :   None
 %
 % Copyright (c) 2025, Edwardssss
-function [H,m,n] = impulse_cal(M,N,L,Ts,Ti,T,hi,K_ratio,delta_f,Vi,rician_index)
+function H = impulse_cal(M,N,L,Ts,Ti,T,hi,K_ratio,delta_f,Vi,rician_index)
 n = zeros(1,N);                % delay_Doppler rows (doppler)
 m = zeros(1,M);                % delay_Doppler cols (delay)
 H = transpose(n) .* m;         % Create matrix
